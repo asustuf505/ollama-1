@@ -898,6 +898,10 @@ func (s *llmServer) Close() error {
 		slog.Debug("llama server stopped")
 	}
 
+	if s.llamaModel != nil {
+		s.llamaModel.Close()
+	}
+
 	return nil
 }
 

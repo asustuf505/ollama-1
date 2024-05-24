@@ -57,6 +57,10 @@ func newLlamaModel(p string) *llamaModel {
 	}
 }
 
+func (llm *llamaModel) Close() {
+	C.llama_free_model(llm.m)
+}
+
 func (llm *llamaModel) Tokenize(s string) []int {
 	cs := C.CString(s)
 	defer C.free(unsafe.Pointer(cs))
